@@ -1,7 +1,9 @@
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -15,17 +17,48 @@ public class PracticeFormTests {
 
     @Test
     void FillPracticeFormTest () {
+        // Open the page "Practice Form"
         open("/automation-practice-form");
+
+        // Check that opened page is exactly the page "Practice Form"
+        $(".main-header").shouldHave(Condition.exactTextCaseSensitive("Practice Form"));
+
+        // Fill in the form fields
         $("#firstName").setValue("Slobodan");
         $("#lastName").setValue("Milosevic");
         $("#userEmail").setValue("slobodan@mail.ru");
         $(byText("Male")).click();
         //$("#gender-radio-1").
                 //selectRadio("#gender-radio-1");
-        $("#userNumber").setValue("+738045698755");
+        $("#userNumber").setValue("7380456987");
 
+        // Choose a subject in Search drop-down menu
         $("#subjectsContainer").$("#subjectsInput").setValue("e");
         $(byText("English")).click();
+        $("#subjectsContainer").$("#subjectsInput").setValue("ar");
+        $(byText("Arts")).click();
+
+        // Entering personal subject
+        $("#subjectsContainer").$("#subjectsInput").setValue("cars");
+
+        // Choose a Hobby check-box
+        $("#hobbies-checkbox-1").sibling(0).click();
+        $("#hobbies-checkbox-2").sibling(0).click();
+        $("#hobbies-checkbox-3").sibling(0).click();
+        $("#hobbies-checkbox-2").sibling(0).click();
+
+        // Check that personal subject doesn't exit in the list of subjects
+        $("#subjectsContainer").shouldNotHave(exactTextCaseSensitive("cars")).
+                shouldHave(text("English")).shouldHave(text("Arts"));
+
+        // Set Current Address
+        $("[placeholder='Current Address']").setValue("101000 Novi Sad, Serbija\nCara Dusana 83. sprat 243");
+
+        // Select State and City
+        $("#state").click();
+        $(byText("Haryana")).click();
+        $("#city").click();
+        $(byText("Panipat")).click();
 
        // $("#output").shouldHave(text("Grigorii"), text("g-amelin@mail.ru"),
            //     text("Some address 1"), text("Some address 2"));
