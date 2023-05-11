@@ -20,6 +20,9 @@ public class PracticeFormTests {
         // Open the page "Practice Form"
         open("/automation-practice-form");
 
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         // Check that opened page is exactly the page "Practice Form"
         $(".main-header").shouldHave(Condition.exactTextCaseSensitive("Practice Form"));
 
@@ -38,7 +41,7 @@ public class PracticeFormTests {
         $("#subjectsContainer").$("#subjectsInput").setValue("ar");
         $(byText("Arts")).click();
 
-        // Entering personal subject
+        // Entering personal subject todo
         $("#subjectsContainer").$("#subjectsInput").setValue("cars");
 
         // Choose a Hobby check-box
@@ -60,8 +63,33 @@ public class PracticeFormTests {
         $("#city").click();
         $(byText("Panipat")).click();
 
-       // $("#output").shouldHave(text("Grigorii"), text("g-amelin@mail.ru"),
-           //     text("Some address 1"), text("Some address 2"));
+        // Open button "Submit" and check that modal window is opened
+        $("#submit").click();
+        $(".modal-header").shouldHave(text("Thanks for submitting the form"));
+
+        // Check the correctness of the data in modal window
+        $(".table-responsive").$(byText("Student Name")).parent()
+                .shouldHave(text("Slobodan Milosevic"));
+        $(".table-responsive").$(byText("Student Email")).parent()
+                .shouldHave(text("slobodan@mail.ru"));
+        $(".table-responsive").$(byText("Gender")).parent()
+                .shouldHave(text("Male"));
+        $(".table-responsive").$(byText("Mobile")).parent()
+                .shouldHave(text("7380456987"));
+
+        $(".table-responsive").$(byText("Subjects")).parent()
+                .shouldHave(text("English, Arts"));
+        $(".table-responsive").$(byText("Hobbies")).parent()
+                .shouldHave(text("Sports, Music"));
+
+        $(".table-responsive").$(byText("Address")).parent()
+                .shouldHave(text("101000 Novi Sad, Serbija Cara Dusana 83. sprat 243"));
+        $(".table-responsive").$(byText("State and City")).parent()
+                .shouldHave(text("Haryana Panipat"));
+
+        // Close a modal window
+        $("#closeLargeModal").click();
+
         sleep(5000);
     }
 }
