@@ -20,11 +20,13 @@ public class PracticeFormTests {
         // Open the page "Practice Form"
         open("/automation-practice-form");
 
+        // Hide advertisement bars
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
+        executeJavaScript("$('.sidebar-content').remove()");
 
         // Check that opened page is exactly the page "Practice Form"
-        $(".main-header").shouldHave(Condition.exactTextCaseSensitive("Practice Form"));
+        $(".text-center").shouldHave(Condition.exactTextCaseSensitive("Practice Form"));
 
         // Fill in the form fields
         $("#firstName").setValue("Slobodan");
