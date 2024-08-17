@@ -21,13 +21,14 @@ public class PracticeFormTests extends TestBase {
                 openPage().
                 setFirstName(firstName).
                 setLastName(lastName).
-                setEmail(userEmail);
+                setEmail(userEmail).
+                selectGender();
 
 
         // Universal method to select gender not looking at local language instead of $(byText("Male")).click();
         //$("#gender-radio-1").parent().click();
 
-        $("[for=gender-radio-1]").click();
+
 
         $("#userNumber").setValue("7380456987");
 
