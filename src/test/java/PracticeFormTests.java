@@ -8,32 +8,21 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeFormTests {
-
-    @BeforeAll
-    static void beforeAll () {
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1266x668";
-        // Configuration.holdBrowserOpen = true;
-    }
+public class PracticeFormTests extends TestBase {
 
     @Test
     void FillPracticeFormTest () {
-        // Open the page "Practice Form"
-        open("/automation-practice-form");
 
-        // Hide advertisement bars
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-        executeJavaScript("$('.sidebar-content').remove()");
+        String firstName = "Slobodan",
+                lastName = "Milosevic",
+                userEmail = "slobodan@mail.ru";
 
-        // Check that opened page is exactly the page "Practice Form"
-        $(".text-center").shouldHave(Condition.exactTextCaseSensitive("Practice Form"));
+        new RegistrationPage().
+                openPage().
+                setFirstName(firstName).
+                setLastName(lastName).
+                setEmail(userEmail);
 
-        // Fill in the form fields
-        $("#firstName").setValue("Slobodan");
-        $("#lastName").setValue("Milosevic");
-        $("#userEmail").setValue("slobodan@mail.ru");
 
         // Universal method to select gender not looking at local language instead of $(byText("Male")).click();
         //$("#gender-radio-1").parent().click();
