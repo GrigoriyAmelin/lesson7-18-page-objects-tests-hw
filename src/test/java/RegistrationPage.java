@@ -1,5 +1,6 @@
 import com.codeborne.selenide.Condition;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
@@ -41,6 +42,12 @@ public class RegistrationPage {
 
     public RegistrationPage setPhoneNumber(String phoneNumber) {
         $("#userNumber").setValue(phoneNumber);
+        return this;
+    }
+
+    public RegistrationPage selectSubject(String sign, String subject) {
+        $("#subjectsContainer").$("#subjectsInput").setValue(sign);
+        $(byText(subject)).click();
         return this;
     }
 }

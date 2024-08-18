@@ -16,7 +16,11 @@ public class PracticeFormTests extends TestBase {
         String firstName = "Slobodan",
                 lastName = "Milosevic",
                 userEmail = "slobodan@mail.ru",
-                phoneNumber = "7380456987";
+                phoneNumber = "7380456987",
+                signLetter1 = "e",
+                subject1 = "English",
+                signLetter2 = "ar",
+                subject2 = "Arts";
 
         new RegistrationPage().
                 openPage().
@@ -24,15 +28,9 @@ public class PracticeFormTests extends TestBase {
                 setLastName(lastName).
                 setEmail(userEmail).
                 selectGender().
-                setPhoneNumber(phoneNumber);
-
-
-        // Universal method to select gender not looking at local language instead of $(byText("Male")).click();
-        //$("#gender-radio-1").parent().click();
-
-
-
-
+                setPhoneNumber(phoneNumber).
+                selectSubject(signLetter1, subject1).
+                selectSubject(signLetter2, subject2);
 
         // Select Date of birth
         //$("#dateOfBirth").click();
@@ -42,10 +40,7 @@ public class PracticeFormTests extends TestBase {
         $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
 
         // Choose a subject in Search drop-down menu
-        $("#subjectsContainer").$("#subjectsInput").setValue("e");
-        $(byText("English")).click();
-        $("#subjectsContainer").$("#subjectsInput").setValue("ar");
-        $(byText("Arts")).click();
+
 
         // Entering personal subject
         $("#subjectsContainer").$("#subjectsInput").setValue("cars");
