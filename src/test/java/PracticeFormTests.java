@@ -15,14 +15,16 @@ public class PracticeFormTests extends TestBase {
 
         String firstName = "Slobodan",
                 lastName = "Milosevic",
-                userEmail = "slobodan@mail.ru";
+                userEmail = "slobodan@mail.ru",
+                phoneNumber = "7380456987";
 
         new RegistrationPage().
                 openPage().
                 setFirstName(firstName).
                 setLastName(lastName).
                 setEmail(userEmail).
-                selectGender();
+                selectGender().
+                setPhoneNumber(phoneNumber);
 
 
         // Universal method to select gender not looking at local language instead of $(byText("Male")).click();
@@ -30,7 +32,7 @@ public class PracticeFormTests extends TestBase {
 
 
 
-        $("#userNumber").setValue("7380456987");
+
 
         // Select Date of birth
         //$("#dateOfBirth").click();
