@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
-    private final String titleText = "Practice Form";
+    private final String TITLE_TEX = "Practice Form";
 
     private SelenideElement
             firstNameInput = $("#firstName"),
@@ -18,7 +18,7 @@ public class RegistrationPage {
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('.sidebar-content').remove()");
-        $(".text-center").shouldHave(Condition.exactTextCaseSensitive(titleText));
+        $(".text-center").shouldHave(Condition.exactTextCaseSensitive(TITLE_TEX));
         return this;
     }
 
