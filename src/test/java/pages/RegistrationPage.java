@@ -11,7 +11,11 @@ public class RegistrationPage {
 
     private SelenideElement
             firstNameInput = $("#firstName"),
-            lastNameInput = $("#lastName");
+            lastNameInput = $("#lastName"),
+            userEmailInput = $("#userEmail"),
+            genderSelector = $("#genterWrapper"),
+            userPhoneInput = $("#userNumber"),
+            subjectInput = $("#subjectsContainer").$("#subjectsInput");
 
     public RegistrationPage openPage () {
         open("/automation-practice-form");
@@ -33,22 +37,22 @@ public class RegistrationPage {
     }
 
     public RegistrationPage setEmail(String userEmail) {
-        $("#userEmail").setValue(userEmail);
+        userEmailInput.setValue(userEmail);
         return this;
     }
 
     public RegistrationPage selectGender(String gender) {
-        $("#genterWrapper").$(byText(gender)).click();
+        genderSelector.$(byText(gender)).click();
         return this;
     }
 
     public RegistrationPage setPhoneNumber(String phoneNumber) {
-        $("#userNumber").setValue(phoneNumber);
+        userPhoneInput.setValue(phoneNumber);
         return this;
     }
 
     public RegistrationPage selectSubject(String sign, String subject) {
-        $("#subjectsContainer").$("#subjectsInput").setValue(sign);
+        subjectInput.setValue(sign);
         $(byText(subject)).click();
         return this;
     }
