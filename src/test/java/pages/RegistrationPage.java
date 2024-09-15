@@ -1,34 +1,34 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class RegistrationPage {
+    private final String titleText = "Practice Form";
+
+    private SelenideElement
+            firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName");
 
     public RegistrationPage openPage () {
-
-        // Open the page "Practice Form"
         open("/automation-practice-form");
-
-        // Hide advertisement bars
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('.sidebar-content').remove()");
-
-        // Check that opened page is exactly the page "Practice Form"
-        $(".text-center").shouldHave(Condition.exactTextCaseSensitive("Practice Form"));
+        $(".text-center").shouldHave(Condition.exactTextCaseSensitive(titleText));
         return this;
     }
 
     public RegistrationPage setFirstName(String firstName) {
-        $("#firstName").setValue(firstName);
+        firstNameInput.setValue(firstName);
         return this;
     }
 
     public RegistrationPage setLastName(String lastName) {
-        $("#lastName").setValue(lastName);
+        lastNameInput.setValue(lastName);
         return this;
     }
 
