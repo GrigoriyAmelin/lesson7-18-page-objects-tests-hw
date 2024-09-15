@@ -15,6 +15,7 @@ public class PracticeFormTests extends TestBase {
         String firstName = "Slobodan",
                 lastName = "Milosevic",
                 userEmail = "slobodan@mail.ru",
+                gender = "Male",
                 phoneNumber = "7380456987",
                 signLetter1 = "e",
                 subject1 = "English",
@@ -26,7 +27,7 @@ public class PracticeFormTests extends TestBase {
                 setFirstName(firstName).
                 setLastName(lastName).
                 setEmail(userEmail).
-                selectGender().
+                selectGender(gender).
                 setPhoneNumber(phoneNumber).
                 selectSubject(signLetter1, subject1).
                 selectSubject(signLetter2, subject2);

@@ -37,8 +37,8 @@ public class RegistrationPage {
         return this;
     }
 
-    public RegistrationPage selectGender() {
-        $("[for=gender-radio-1]").click();
+    public RegistrationPage selectGender(String gender) {
+        $("#genterWrapper").$(byText(gender)).click();
         return this;
     }
 
